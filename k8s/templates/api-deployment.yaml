@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  labels:
+    app: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: dockergl98/node-ts:v0.0.1
+        ports:
+        - containerPort: 3000
+        env:
+        - name: APP_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: api-configmap
+              key: APP_PORT
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: api-secret
+              key: DATABASE_URL
+---
+# We could create a separate .yaml file for the service but is not a common pattern.
+# Usually service and deployments go together.
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-service
+spec:
+  selector:
+    app: api
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

@@ -1,0 +1,30 @@
+version: '3'
+services:
+  api:
+    build: .
+    env_file:
+      - ./.env
+    ports:
+      - 3000:${APP_PORT}
+    volumes:
+      - ./:/app
+    
+  database:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=root
+      - POSTGRES_DB=node-api
+  pgadmin:
+    image: dpage/pgadmin4:4.25
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - "80:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "pgadmin"
+      PGADMIN_DEFAULT_PASSWORD: "pgadmin"
