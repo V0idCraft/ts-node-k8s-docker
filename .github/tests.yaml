@@ -1,0 +1,13 @@
+name: Tests-cases
+
+on:
+  pull_request:
+    paths:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd api && npm install && npm run test
