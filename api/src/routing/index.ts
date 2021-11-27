@@ -1,4 +1,4 @@
-import { createOneRoute as createOneRouteUser } from "../modules/user";
+import { createOneRoute as createOneRouteUser, findAllUsersRoute} from "../modules/user";
 import { IRouting } from "./IRouting";
 
 const routes: IRouting[] = [
@@ -6,7 +6,7 @@ const routes: IRouting[] = [
   {
     prefix: "/api/v1",
     path: "user",
-    routes: [createOneRouteUser],
+    routes: [createOneRouteUser,findAllUsersRoute],
   },
 ];
 

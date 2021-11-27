@@ -8,6 +8,7 @@
     "start:dev": "nodemon -L --config nodemon.json src/index.ts",
     "prisma:generate": "npx prisma generate",
     "migrate:dev": "npx prisma migrate dev --",
+    "migrate:deploy": "npx prisma migrate deploy",
     "start:prod": "node ./build/index.js",
     "build": "npx tsc -p ./tsconfig.json"
   },
