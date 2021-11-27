@@ -1,45 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-deployment
+  name: react-client-deployment
   labels:
-    app: api
+    app: react-client
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: api
+      app: react-client
   template:
     metadata:
       labels:
-        app: api
+        app: react-client
     spec:
       containers:
-      - name: api
-        image: dockergl98/node-ts
+      - name: react-client
+        image: dockergl98/react-client-ts
         ports:
         - containerPort: 3000
-        env:
-        - name: APP_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: api-configmap
-              key: APP_PORT
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: api-secret
-              key: DATABASE_URL
 ---
 # We could create a separate .yaml file for the service but is not a common pattern.
 # Usually service and deployments go together.
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-service
+  name: client-service
 spec:
   selector:
-    app: api
+    app: react-client
   ports:
     - protocol: TCP
       port: 3000

@@ -6,19 +6,19 @@ spec:
   template:
     spec:
       containers:
-      - name: api-prisma-migrate
-        image: dockergl98/node-ts
-        command: ["npm", "run","migrate:dev"]
-        env:
-        - name: APP_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: api-configmap
-              key: APP_PORT
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: api-secret
-              key: DATABASE_URL
+        - name: api-prisma-migrate
+          image: dockergl98/node-ts
+          command: ["npm", "run", "migrate:dev"]
+          env:
+            - name: APP_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: api-configmap
+                  key: APP_PORT
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: api-secret
+                  key: DATABASE_URL
       restartPolicy: Never
   backoffLimit: 2

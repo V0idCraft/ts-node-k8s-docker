@@ -17,11 +17,13 @@
   "dependencies": {
     "@babel/preset-typescript": "^7.16.0",
     "@prisma/client": "^3.5.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.3",
     "@types/typescript": "^2.0.0",
