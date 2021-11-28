@@ -8,7 +8,7 @@ spec:
       containers:
         - name: api-prisma-migrate
           image: dockergl98/node-ts
-          command: ["npm", "run", "migrate:dev"]
+          command: ["npm", "run", "migrate:seed"]
           env:
             - name: APP_PORT
               valueFrom:
